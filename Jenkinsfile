@@ -5,11 +5,13 @@ pipeline {
         }
     }
 
-
+environment {
+    PATH="/opt/apache-maven-3.9.8/bin:$PATH"
+}
     stages {
-        stage('Clone code') {
+        stage('build') {
             steps {
-                git branch: 'main', url: 'https://github.com/DandySabrrish1999/ttrend.git'
+                sh 'mvn clean '
             }
         }
     }
