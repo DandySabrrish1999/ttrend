@@ -5,7 +5,6 @@ Main contains application code.
 Test contains test cases.  
 It also contains pom.xml which has all dependences and artfact name and version
 
-test-line first commit from local to git
-pushing from my local to git test_webhook
-v1.1
+Pushing from a new local machine sept4th 
+
 
