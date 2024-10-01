@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service                           ## Which means it creates service type of resource
+metadata:
+  name: dev-udemy-rtp-service           ## Name for service
+  namespace: dev-udemy-namespace        ## Declared in namespace file
+spec:
+  type: NodePort                        ## used when you want to access the application from outside the cluster
+  selector:
+    app: dev-udemy-rtp                  ## Under selector in deployment file
+  ports:
+  - nodePort: 30082                     ## This port is used to acess the cluster from outside
+    port: 8000
+    targetPort: 8000
