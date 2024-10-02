@@ -85,6 +85,7 @@ environment {
             steps {
         script {
            echo '<--------------- Docker Build Started --------------->'
+           sh 'export DOCKER_BUILDKIT=1'             // Enables docker buildkit
            app = docker.build(imageName+":"+version)
            echo '<--------------- Docker Build Ends --------------->'
         }
