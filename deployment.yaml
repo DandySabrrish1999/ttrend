@@ -23,12 +23,11 @@ spec:
         ports:
         - containerPort: 8000                                ## Application running port number
         resources:
-          limits:
-            memory: "512Mi"                   ## Setting memory limit
-            ephemeral-storage: "1Gi"         # Set storage limit
           requests:
-            memory: "1Gi"
-            ephemeral-storage: "2Gi"   # Set storage limit
+            cpu: "500m"
+          limits:
+            cpu: "1"
+          
         env:
         - name: CONSUMER_KEY
           value: "G6lmKhsi0V9TvXt6oKTfjRBCr"
