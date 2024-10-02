@@ -23,10 +23,14 @@ spec:
         ports:
         - containerPort: 8000                                ## Application running port number
         resources:
-          requests:
-            cpu: "500m"
-          limits:
-            cpu: "1"
+            requests:
+              cpu: "500m"            # CPU request
+              memory: "256Mi"        # Memory request
+              ephemeral-storage: "1Gi" # Storage request (ephemeral, local storage)
+            limits:
+              cpu: "1"               # CPU limit
+              memory: "512Mi"        # Memory limit
+              ephemeral-storage: "2Gi" #
           
         env:
         - name: CONSUMER_KEY
