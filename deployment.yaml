@@ -13,6 +13,7 @@ spec:
       labels:
         app:  dev-udemy-rtp
     spec:
+      automountServiceAccountToken: false  ## Disable automounting
       imagePullSecrets:         ## To retreive the credentials of Jfrog
       - name: jfrogcred
       containers:
@@ -21,6 +22,11 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8000                                ## Application running port number
+        resources:
+          limits:
+            memory: "512Mi"                   ## Setting memory limit
+          requests:
+            memory: "1Gi"
         env:
         - name: CONSUMER_KEY
           value: "G6lmKhsi0V9TvXt6oKTfjRBCr"
