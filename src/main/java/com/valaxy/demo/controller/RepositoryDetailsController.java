@@ -21,8 +21,17 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 @RestController
 public class RepositoryDetailsController {
+
+
+	// Create a logger instance
+	private static final Logger logger = LoggerFactory.getLogger(RepositoryDetailsController.class);
+
 
 
 
@@ -43,7 +52,9 @@ public class RepositoryDetailsController {
 		String consumerSecret = env.getProperty("CONSUMER_SECRET");
 		String accessToken = env.getProperty("ACCESS_TOKEN");
 		String accessTokenSecret = env.getProperty("ACCESS_TOKEN_SECRET");
-		System.out.println("consumerKey "+consumerKey+" consumerSecret "+consumerSecret+" accessToken "+accessToken+" accessTokenSecret "+accessTokenSecret);		
+		logger.info("consumerKey: {} consumerSecret: {} accessToken: {} accessTokenSecret: {}", 
+                    consumerKey, consumerSecret, accessToken, accessTokenSecret);
+		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
 		        .setOAuthConsumerKey(consumerKey)
@@ -51,14 +62,13 @@ public class RepositoryDetailsController {
 				.setOAuthAccessToken(accessToken)
 				.setOAuthAccessTokenSecret(accessTokenSecret);
 		TwitterFactory tf = new TwitterFactory(cb.build());
-		System.out.println("Twitter Factory "+tf);
-		System.out.println("Code testing purpose ");
+		logger.info("Twitter Factory: {}", tf);
 		Twitter twitter = tf.getInstance();
-		System.out.println("Twitter object "+twitter);
+		logger.info("Twitter object: {}", twitter);
 		Map<String, String> trendDetails = new HashMap<String, String>();
 		try {
 			Trends trends = twitter.getPlaceTrends(Integer.parseInt(trendPlace));
-			System.out.println("After API call");
+			logger.info("After API call");
 			int count = 0;
 			for (Trend trend : trends.getTrends()) {
 				if (count < Integer.parseInt(trendCount)) {
@@ -67,13 +77,15 @@ public class RepositoryDetailsController {
 				}
 			}
 		} catch (TwitterException e) {
+			logger.error("Twitter exception occurred", e);
 			trendDetails.put("test", "MyTweet");
             //trendDetails.put("Twitter Exception", e.getMessage());
-			System.out.println("Twitter exception "+e.getMessage());
+			
 
 		}catch (Exception e) {
+			logger.error("Exception occurred", e);
 			trendDetails.put("test", "MyTweet");
-            System.out.println("Exception "+e.getMessage());
+            
 		}
 		return trendDetails;
 	}
