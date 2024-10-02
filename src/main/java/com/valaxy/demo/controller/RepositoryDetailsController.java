@@ -65,7 +65,7 @@ public class RepositoryDetailsController {
 		logger.info("Twitter Factory: {}", tf);
 		Twitter twitter = tf.getInstance();
 		logger.info("Twitter object: {}", twitter);
-		Map<String, String> trendDetails = new HashMap<String, String>();
+		Map<String, String> trendDetails = new HashMap<>();
 		try {
 			Trends trends = twitter.getPlaceTrends(Integer.parseInt(trendPlace));
 			logger.info("After API call");
@@ -79,7 +79,7 @@ public class RepositoryDetailsController {
 		} catch (TwitterException e) {
 			logger.error("Twitter exception occurred", e);
 			trendDetails.put("test", "MyTweet");
-            //trendDetails.put("Twitter Exception", e.getMessage());
+            
 			
 
 		}catch (Exception e) {
