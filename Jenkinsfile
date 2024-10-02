@@ -102,6 +102,14 @@ environment {
             }
         }
     }
+    stage("Deployment"){
+        steps{
+            script{
+                sh'./deploy.sh'
+            }
+        }
+    }
+
 
     
 }
