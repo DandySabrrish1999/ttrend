@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment                ## Which means it creates deployment type of resource
+metadata:
+  name: dev-udemy-rtp           ## Name of the deployment
+  namespace: dev-udemy-namespace             ## Name which you have declared in namespace file
+spec:
+  replicas: 1
+  selector:                     ## This space is basically for the inter-communication of the service
+    matchLabels:
+      app:  dev-udemy-rtp
+  template:                     ## Required configuration to run the POD
+    metadata:
+      labels:
+        app:  dev-udemy-rtp
+    spec:
+      automountServiceAccountToken: false  ## Disable automounting
+      imagePullSecrets:         ## To retreive the credentials of Jfrog
+      - name: jfrogcred
+      containers:
+      - name:  dev-udemy-rtp
+        image: devopsudemy.jfrog.io/testdocker-docker/ttrend:2.1.2   ## From where to pull the image
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000                                ## Application running port number
+        resources:
+            requests:
+              cpu: "500m"            # CPU request
+              memory: "256Mi"        # Memory request
+              ephemeral-storage: "1Gi" # Storage request (ephemeral, local storage)
+            limits:
+              cpu: "1"               # CPU limit
+              memory: "512Mi"        # Memory limit
+              ephemeral-storage: "2Gi" #
+          
+        env:
+        - name: CONSUMER_KEY
+          value: "G6lmKhsi0V9TvXt6oKTfjRBCr"
+        - name: CONSUMER_SECRET
+          value: "bEyDk8X0p8SQd4376eoNV4nH8To22sHcJOoFt0ZqOKS37hhI4q"
+        - name: ACCESS_TOKEN
+          value: "9703354-52rXHD6EeOQeYyhtNz1w8UVOgbcLcgOo4O7MB6WV3"
+        - name: ACCESS_TOKEN_SECRET
+          value: "zBThlZDEp8qnu7NwwdHNth8eg3Rf9zqbvUEFUTaZtN2SF"
