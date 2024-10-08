@@ -43,7 +43,7 @@ public class RepositoryDetailsController {
 	public String getRepos() throws IOException {
 		GitHub github = new GitHubBuilder().withPassword("valaxytech@gmail.com", "XXXXXXXX").build();
 		GHRepositorySearchBuilder builder = github.searchRepositories();
-		return "This is dandy sabarish, Senior most junior devops engineer";
+		return "This is dandy sabarish, junior devops engineer";
 	}
 
 	@GetMapping("/trends")
