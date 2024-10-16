@@ -41,22 +41,20 @@ This project covers the complete **CI/CD pipeline** lifecycle, from development 
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/DandySabrrish1999/ttrend.git
-Infrastructure Setup:
+2. Infrastructure Setup:
 
-Use Terraform to provision the required AWS infrastructure.
-Follow the documentation to set up EC2 instances and other necessary components:
-bash
-Copy code
+- Use Terraform to provision the required AWS infrastructure.
+- Follow the documentation to set up EC2 instances and other necessary components:
+```
 terraform apply
-Set Up Jenkins and Configure Pipelines:
-
-Use Jenkins to configure and manage your CI/CD pipeline as outlined in the documentation.
-Monitor Application:
-
-Set up Prometheus and Grafana following the documentation for monitoring:
-Access Grafana dashboards for real-time insights into your infrastructure.
-📊 Monitoring and Logging
-Prometheus is configured to monitor system health and performance metrics.
-Grafana dashboards are available to visualize key metrics such as CPU usage, memory consumption, and request rates.
-📖 Conclusion
+```
+3. Set Up Jenkins and Configure Pipelines:
+- Use Jenkins to configure and manage your CI/CD pipeline as outlined in the documentation.
+4. Monitor Application:
+- Set up Prometheus and Grafana following the documentation for monitoring:
+   - Access Grafana dashboards for real-time insights into your infrastructure.
+## 📊 Monitoring and Logging
+- Prometheus is configured to monitor system health and performance metrics.
+- Grafana dashboards are available to visualize key metrics such as CPU usage, memory consumption, and request rates.
+## 📖 Conclusion
 This project is a complete guide to building, deploying, and monitoring applications in a fully automated DevOps environment. You can follow the detailed documentation provided to set up your own infrastructure and run the pipeline independently.
